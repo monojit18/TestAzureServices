@@ -19,7 +19,15 @@ namespace TestAzureServices.Views
 
             //NavigationPage.SetTitleView(this, titleControl);
 
-            BindingContext = new ImageAnalysisViewModel();
+            var imageAnalysisViewModel = new ImageAnalysisViewModel();
+            imageAnalysisViewModel.ShowCapturedImage = (ImageSource imageSource) => 
+            {
+
+                CapturedImage.Source = imageSource;
+
+            };
+
+            BindingContext = imageAnalysisViewModel;
 
         }
     }

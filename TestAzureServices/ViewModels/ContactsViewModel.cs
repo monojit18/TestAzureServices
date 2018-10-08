@@ -76,9 +76,9 @@ namespace TestAzureServices.ViewModels
         public ContactsViewModel()
         {
 
-            var imageBytesArray = SharedAppInitializer.SharedInstance.GetImageBytes("fruit3.jpeg");
-            UploadImageAsync("fruit3", "jpeg", imageBytesArray);
-            FetchContactsAsync();
+            //var imageBytesArray = SharedAppInitializer.SharedInstance.GetImageBytes("fruit3.jpeg");
+            //UploadImageAsync("fruit3", "jpeg", imageBytesArray);
+            //FetchContactsAsync();
 
         }
     }

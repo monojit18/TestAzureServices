@@ -6,14 +6,26 @@
     
     <ContentPage.Content>
         
-        <StackLayout BackgroundColor="Gray" HorizontalOptions="Fill" HeightRequest="64">                                 
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+            <Image x:Name="CapturedImage" Source="placeholder.png"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand" Aspect="AspectFit" />
+            
+            <Button x:Name="CapturePhoto" Text="Capture Photo"
+                    HorizontalOptions="FillAndExpand"
+                    Command="{Binding CaptureImageCommand}" />
+            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
+
+
+<!--<StackLayout BackgroundColor="Gray" HorizontalOptions="Fill" HeightRequest="64">                                 
         <customcontrols:CircleImageView Source="logout.png"
                                         WidthRequest="44"
                                         HeightRequest="44"
                                         HorizontalOptions="End" />
             
-        </StackLayout>
-        
-        
-    </ContentPage.Content>
-</ContentPage>
+        </StackLayout>-->

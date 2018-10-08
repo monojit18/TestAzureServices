@@ -63,6 +63,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ImageAnalysisViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ContactsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EasyBlobModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ICapturePhotoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />

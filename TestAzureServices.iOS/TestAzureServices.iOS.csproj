@@ -97,6 +97,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthenticatoriOS.cs" />
     <Compile Include="CustomRenderers\CircleImagerenderer.cs" />
+    <Compile Include="Services\CapturePhotoiOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -182,6 +183,7 @@
     <BundleResource Include="Resources\fruit2.jpeg" />
     <BundleResource Include="Resources\fruit3.jpeg" />
     <BundleResource Include="Resources\fruit4.jpeg" />
+    <BundleResource Include="Resources\placeholder.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\cup3.jpeg" />

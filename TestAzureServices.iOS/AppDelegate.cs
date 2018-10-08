@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 using Autofac;
 using TestAzureServices.Commons;
 using TestAzureServices.Services;
@@ -28,6 +29,8 @@ namespace TestAzureServices.iOS
         {
 
             Xamarin.Calabash.Start();
+
+            DependencyService.Register<CapturePhotoiOS>();
 
             var builder = new ContainerBuilder();
             builder.RegisterType<AuthenticatoriOS>().As<IAuthenticator>();                 

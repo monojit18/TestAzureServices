@@ -15,8 +15,13 @@ using TestAzureServices.Services;
 
 namespace TestAzureServices.ViewModels
 {
+
+    public delegate void ShowCapturedImage(ImageSource imageSource);
+
     public class ImageAnalysisViewModel
     {
+
+        private ICapturePhotoService _imageService;
 
         private async Task UploadImageAsync(byte[] imageBytesArray)
         {
@@ -43,11 +48,34 @@ namespace TestAzureServices.ViewModels
 
         }
 
+        private async Task CapturePhotoAsync()
+        {
+
+            _imageService = DependencyService.Get<ICapturePhotoService>();
+            var capturedBytes = await _imageService.CapturePhotoAsync();
+            var imageSource = ImageSource.FromStream(() =>
+            {
+
+                return (new MemoryStream(capturedBytes));
+
+            });
+
+            ShowCapturedImage.Invoke(imageSource);
+
+        }
+
+        public ShowCapturedImage ShowCapturedImage { get; set; }
+        public ICommand CaptureImageCommand { get; set; }
+
         public ImageAnalysisViewModel()
         {
 
-            var imageBytesArray = SharedAppInitializer.SharedInstance.GetImageBytes("fruit3.jpeg");
-            UploadImageAsync(imageBytesArray);
+
+            CaptureImageCommand = new Command(async () => await CapturePhotoAsync());
+
+
+            //var imageBytesArray = SharedAppInitializer.SharedInstance.GetImageBytes("fruit3.jpeg");
+            //UploadImageAsync(imageBytesArray);
 
         }
     }
