@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestAzureServices.Views.ImageAnalysisPage"
+             xmlns:customcontrols="clr-namespace:TestAzureServices.Views.CustomControls">
+    
+    <ContentPage.Content>
+        
+        <StackLayout BackgroundColor="Gray" HorizontalOptions="Fill" HeightRequest="64">                                 
+        <customcontrols:CircleImageView Source="logout.png"
+                                        WidthRequest="44"
+                                        HeightRequest="44"
+                                        HorizontalOptions="End" />
+            
+        </StackLayout>
+        
+        
+    </ContentPage.Content>
+</ContentPage>
