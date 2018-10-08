@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestAzureServices.Views.OCRExtractPage">
+    <ContentPage.Content>
+        
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+            <Image x:Name="CapturedImage" Source="placeholder.png"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand" Aspect="AspectFit" />
+            
+            <Button x:Name="CapturePhoto" Text="Capture Photo"
+                    HorizontalOptions="FillAndExpand"                    
+                    Command="{Binding CaptureImageCommand}" />
+            
+            <Button x:Name="UploadImage" Text="Upload Image"
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="{Binding CanUpload}"
+                    Command="{Binding UploadImageCommand}" />
+            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

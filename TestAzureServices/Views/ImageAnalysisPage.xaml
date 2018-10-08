@@ -13,8 +13,17 @@
                    VerticalOptions="FillAndExpand" Aspect="AspectFit" />
             
             <Button x:Name="CapturePhoto" Text="Capture Photo"
-                    HorizontalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"                    
                     Command="{Binding CaptureImageCommand}" />
+            
+            <Button x:Name="AnalyzePhoto" Text="Analyze Photo"
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="{Binding CanUpload}"
+                    Command="{Binding AnalyzeImageCommand}" />
+            
+            <Label x:Name="AnalyzedLabel" Text="{Binding AnalyzedResult}" BackgroundColor="Green"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   HorizontalOptions="FillAndExpand" />
             
         </StackLayout>
         

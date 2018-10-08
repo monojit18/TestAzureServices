@@ -7,7 +7,7 @@ using TestAzureServices.Services;
 namespace TestAzureServices.iOS.Services
 {
 
-    public class CapturePhotoiOS : ICapturePhotoService
+    public class CaptureServiceOS : ICapturePhotoService
     {
 
         private UIImagePickerController _imagePicker;
@@ -53,7 +53,6 @@ namespace TestAzureServices.iOS.Services
                                          UIImagePickerMediaPickedEventArgs e)
         {
             
-            bool isImage = false;
             var mediaTypeString = e.Info[UIImagePickerController.MediaType].ToString();
             if (string.Compare(mediaTypeString, "public.image", true) == -1)
                 return;
@@ -63,14 +62,15 @@ namespace TestAzureServices.iOS.Services
             if (referenceURL != null)
                 Console.WriteLine("Url:" + referenceURL.ToString());
 
-            if (isImage == false) // video
-                return;
-
             UIImage originalImage = e.Info[UIImagePickerController.OriginalImage]
                                      as UIImage;
             if (originalImage != null)
             {
 
+
+                originalImage = originalImage.Scale(originalImage.Size,
+                                                    (nfloat)(originalImage
+                                                             .CurrentScale * 0.5));
                 var imageBytes = originalImage.AsJPEG().ToArray();
                 _imageTask.SetResult(imageBytes);
 

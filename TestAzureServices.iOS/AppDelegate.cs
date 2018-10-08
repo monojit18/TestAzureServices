@@ -30,7 +30,7 @@ namespace TestAzureServices.iOS
 
             Xamarin.Calabash.Start();
 
-            DependencyService.Register<CapturePhotoiOS>();
+            DependencyService.Register<CaptureServiceOS>();
 
             var builder = new ContainerBuilder();
             builder.RegisterType<AuthenticatoriOS>().As<IAuthenticator>();                 

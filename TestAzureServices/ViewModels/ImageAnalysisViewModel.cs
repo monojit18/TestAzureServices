@@ -10,18 +10,23 @@ using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Autofac;
+using Newtonsoft.Json;
 using TestAzureServices.Commons;
 using TestAzureServices.Services;
+using TestAzureServices.Models;
 
 namespace TestAzureServices.ViewModels
 {
 
     public delegate void ShowCapturedImage(ImageSource imageSource);
 
-    public class ImageAnalysisViewModel
+    public class ImageAnalysisViewModel : ViewModeBase
     {
-
+    
         private ICapturePhotoService _imageService;
+        private Command _analyzeImageCommand;
+        private bool _canUpload;
+        private string _analyzedResult;
 
         private async Task UploadImageAsync(byte[] imageBytesArray)
         {
@@ -42,6 +47,16 @@ namespace TestAzureServices.ViewModels
                     var responseString = await httpResponse.Content.ReadAsStringAsync();
                     Console.WriteLine(responseString);
 
+                    var analyzedModel = JsonConvert.DeserializeObject<AnalyzedModel>(responseString);
+                    if (analyzedModel == null)
+                        return;
+
+                    var captions = analyzedModel.Description.Captions;
+                    if (captions == null || captions.Count == 0)
+                        return;
+
+                    AnalyzedResult = captions[0].Text;
+
                 }
 
             }
@@ -52,11 +67,17 @@ namespace TestAzureServices.ViewModels
         {
 
             _imageService = DependencyService.Get<ICapturePhotoService>();
-            var capturedBytes = await _imageService.CapturePhotoAsync();
+            var imageBytesArray = await _imageService.CapturePhotoAsync();
+            if ((imageBytesArray == null) || (imageBytesArray.Length == 0))
+                return;
+
+            CanUpload = true;
+            AnalyzeImageCommand = new Command(async () => await UploadImageAsync(imageBytesArray));
+
             var imageSource = ImageSource.FromStream(() =>
             {
 
-                return (new MemoryStream(capturedBytes));
+                return (new MemoryStream(imageBytesArray));
 
             });
 
@@ -65,6 +86,67 @@ namespace TestAzureServices.ViewModels
         }
 
         public ShowCapturedImage ShowCapturedImage { get; set; }
+
+        public bool CanUpload
+        {
+
+            get
+            {
+
+                return _canUpload;
+
+            }
+            set
+            {
+
+                _canUpload = value;
+                OnPropertyChanged("CanUpload");
+
+            }
+
+
+        }
+
+        public string AnalyzedResult
+        {
+
+            get
+            {
+
+                return _analyzedResult;
+
+            }
+            set
+            {
+
+                _analyzedResult = value;
+                OnPropertyChanged("AnalyzedResult");
+
+            }
+
+
+        }
+
+        public Command AnalyzeImageCommand
+        {
+
+            get
+            {
+
+                return _analyzeImageCommand;
+
+            }
+            set
+            {
+
+                _analyzeImageCommand = value;
+                OnPropertyChanged("AnalyzeImageCommand");
+
+            }
+
+
+        }
+
         public ICommand CaptureImageCommand { get; set; }
 
         public ImageAnalysisViewModel()
@@ -72,11 +154,8 @@ namespace TestAzureServices.ViewModels
 
 
             CaptureImageCommand = new Command(async () => await CapturePhotoAsync());
-
-
-            //var imageBytesArray = SharedAppInitializer.SharedInstance.GetImageBytes("fruit3.jpeg");
-            //UploadImageAsync(imageBytesArray);
-
+            _canUpload = false;
+            AnalyzedResult = "Wait....";
         }
     }
 }

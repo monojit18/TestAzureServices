@@ -6,9 +6,19 @@ using TestAzureServices.ViewModels;
 
 namespace TestAzureServices.Views
 {
-    public partial class ContactsPage : ContentPage
+    public partial class PostsPage : ContentPage
     {
-        public ContactsPage()
+
+        private PostsViewModel _postsViewModel;
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if ((_postsViewModel.Posts == null) || (_postsViewModel.Posts.Count == 0))
+                _postsViewModel.LoadPostsCommand.Execute(null);
+        }
+
+        public PostsPage()
         {
             InitializeComponent();
 
@@ -19,8 +29,11 @@ namespace TestAzureServices.Views
 
             //NavigationPage.SetTitleView(this, titleControl);
 
-            BindingContext = new ContactsViewModel();
+            _postsViewModel = new PostsViewModel();
+            BindingContext = _postsViewModel;
 
         }
+
+
     }
 }

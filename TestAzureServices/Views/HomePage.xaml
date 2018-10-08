@@ -16,14 +16,25 @@
                 <views:ImageAnalysisPage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Contacts">
+        <NavigationPage Title="Posts">
             <!--<NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="red_dot.png" />
                 </OnPlatform>
             </NavigationPage.Icon>-->
             <x:Arguments>
-                <views:ContactsPage />
+                <views:PostsPage />
+            </x:Arguments>
+        </NavigationPage>
+        
+        <NavigationPage Title="OCR">
+            <!--<NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="red_dot.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>-->
+            <x:Arguments>
+                <views:OCRExtractPage />
             </x:Arguments>
         </NavigationPage>
         

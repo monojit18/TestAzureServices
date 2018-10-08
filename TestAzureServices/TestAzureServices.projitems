@@ -23,11 +23,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ContactsPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\PostsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CustomControls\TitleUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\OCRExtractPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -52,8 +56,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ImageAnalysisPage.xaml.cs">
       <DependentUpon>ImageAnalysisPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ContactsPage.xaml.cs">
-      <DependentUpon>ContactsPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\PostsPage.xaml.cs">
+      <DependentUpon>PostsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\CustomControls\TitleUserControl.cs">
       <DependentUpon>TitleUserControl.xaml</DependentUpon>
@@ -61,9 +65,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\CustomControls\CircleImageView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AuthenticatorService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ImageAnalysisViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ContactsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PostsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EasyBlobModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ICapturePhotoService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PostModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AnalyzedModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Subsystems\CustomSqliteORM\External\CMPModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Subsystems\CustomSqliteORM\External\CMPSqliteORMProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Subsystems\CustomSqliteORM\Internal\CMPSqliteORM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\OCRExtractPage.xaml.cs">
+      <DependentUpon>OCRExtractPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\OCRExtractViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
